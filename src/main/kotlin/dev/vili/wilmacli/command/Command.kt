@@ -5,7 +5,9 @@ abstract class Command(name: String, aliases: Array<String>) {
     private val aliases: Array<String>
 
     /**
-     * Commands default to needing the client to be logged in first
+     * Checks if the command needs the user to be logged in
+     *
+     * @return does the command need the user to be logged in
      */
     open fun needsLogin(): Boolean {
         return true
@@ -17,19 +19,33 @@ abstract class Command(name: String, aliases: Array<String>) {
     }
 
     /**
-     * @return did the command finish successfully
+     * Executes the command
+     *
+     * @return success
      */
     abstract fun exec(args: Array<String>): Boolean
 
     /**
+     * Get help about the command (e.g., what it does, what arguments it takes, etc.)
+     *
      * @return help
      */
     abstract fun getHelp(): String
 
+    /**
+     * Get the name of the command
+     *
+     * @return name
+     */
     fun getName(): String {
         return name
     }
 
+    /**
+     * Get the aliases of the command
+     *
+     * @return aliases
+     */
     fun getAliases(): Array<String> {
         return aliases
     }
