@@ -7,12 +7,15 @@
 
 package dev.vili.wilmacli.util
 
+import dev.vili.wilmacli.WilmaCLI
+
 class WLogger {
     // ANSI color codes
     private val reset = "\u001B[0m"
     private val red = "\u001B[31m"
     private val yellow = "\u001B[33m"
     private val blue = "\u001B[34m"
+    private val purple = "\u001B[35m"
 
     /**
      * Logs a message to the console.
@@ -48,6 +51,15 @@ class WLogger {
      */
     fun logInfo(message: String) {
         println("$blue[INFO] $message$reset")
+    }
+
+    /**
+     * Logs a debug message to the console.
+     *
+     * @param message The message to log.
+     */
+    fun logDebug(message: String) {
+        if (WilmaCLI.debugOn) println("$purple[DEBUG] $message$reset")
     }
 }
 

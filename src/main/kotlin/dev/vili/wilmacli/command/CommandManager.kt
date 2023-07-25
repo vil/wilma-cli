@@ -7,6 +7,7 @@
 
 package dev.vili.wilmacli.command
 
+import dev.vili.wilmacli.WilmaCLI
 import dev.vili.wilmacli.command.commands.*
 
 class CommandManager {
@@ -24,9 +25,12 @@ class CommandManager {
             ExamCommand(),
             InfoCommand(),
             ScheduleCommand(),
-            CoursesCommand()
+            CoursesCommand(),
+            AnnouncementsCommand(),
+            DebugCommand()
         )
 
+        WilmaCLI.getLogger().logDebug("Adding ${allCommands.size} commands to the command manager.")
         commands.addAll(allCommands)
     }
 

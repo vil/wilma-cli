@@ -16,18 +16,27 @@ class ServerCommand : Command("Server", arrayOf("login", "l")) {
 
     override fun exec(args: Array<String>): Boolean {
         when (args.getOrNull(0)?.lowercase(Locale.getDefault())) {
+            "set" -> {
+                WilmaCLI.getLogger().log("Enter the server URL.")
+                val serverURL = readln()
+                WilmaCLI.getConfigManager().setConfig("server", serverURL)
+                WilmaCLI.server.serverURL = serverURL
+                WilmaCLI.getLogger().log("Set server URL to $serverURL.")
+                return true
+            }
             "connect" -> {
                 WilmaCLI.getLogger().log("Set server URL to ${WilmaCLI.server.serverURL}.")
-                WilmaCLI.getLogger().log("Please enter your username.")
+                WilmaCLI.getLogger().log("Please enter your username ->")
                 val username = readln()
 
-                WilmaCLI.getLogger().log("Now enter your password.")
+                WilmaCLI.getLogger().log("Please enter your password ->")
                 val password = readln()
 
                 WilmaCLI.getLogger().log("Logging in...")
                 try {
                     runBlocking {
                         WilmaCLI.client.signInToWilma(WilmaCLI.server, username, password)
+                        WilmaCLI.getLogger().logDebug(WilmaCLI.client.roles().payload.toString())
                         WilmaCLI.loggedIn = true
                     }
                     WilmaCLI.getLogger().log("Logged in successfully as $username.")
@@ -52,7 +61,7 @@ class ServerCommand : Command("Server", arrayOf("login", "l")) {
     override fun getHelp(): String = """
         Connects to a Wilma server.
         
-        <server|s> [connect|disconnect|status]
+        <server|s> [set|connect|disconnect|status]
         
         This command is used to connect to a Wilma server. You can also disconnect from the server or check the connection status.
     """.trimIndent()

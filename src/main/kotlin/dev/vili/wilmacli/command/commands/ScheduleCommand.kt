@@ -11,7 +11,7 @@ import dev.vili.wilmacli.command.Command
 import dev.vili.wilmacli.WilmaCLI
 import kotlinx.coroutines.runBlocking
 
-class ScheduleCommand : Command("Schedule", arrayOf("schedule", "s")) {
+class ScheduleCommand : Command("Schedule", arrayOf("schedule")) {
 
     override fun exec(args: Array<String>): Boolean {
         if (needsLogin() && !WilmaCLI.isLoggedIn()) {

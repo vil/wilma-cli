@@ -56,7 +56,7 @@ class TimetableCommand : Command("Timetable", arrayOf()) {
                 runBlocking {
                     val notes = WilmaCLI.client.lessonNotes(LessonNoteRange.CUSTOM, start = startDate, end = endDate)
                     notes.forEach { note ->
-                        WilmaCLI.getLogger().log("${note.courseName} ${note.authorName}")
+                        WilmaCLI.getLogger().log("Course: ${note.courseName} (${note.courseCode}) by ${note.authorName} (${note.authorCodeName})")
                     }
                 }
                 true

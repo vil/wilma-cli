@@ -13,7 +13,7 @@ import dev.vili.wilmacli.WilmaCLI
 class QuitCommand : Command("Quit", arrayOf("q", "exit")) {
 
     override fun exec(args: Array<String>): Boolean {
-        WilmaCLI.running = true
+        WilmaCLI.terminate = true
 
         if (WilmaCLI.isQuitting())
             WilmaCLI.quit()

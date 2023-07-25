@@ -8,6 +8,7 @@
 package dev.vili.wilmacli
 
 import dev.vili.wilmacli.command.CommandManager
+import dev.vili.wilmacli.util.ConfigManager
 import dev.vili.wilmacli.util.WLogger
 import org.openwilma.kotlin.OpenWilma
 import org.openwilma.kotlin.classes.WilmaServer
@@ -16,20 +17,26 @@ import kotlin.system.exitProcess
 class WilmaCLI {
     companion object {
         private val LOGGER = WLogger()
-        private const val VERSION = "0.1.0a"
+        private const val VERSION = "0.1.1a"
         private val wilmaClient = OpenWilma()
-        private val wilmaServer = WilmaServer("") // TODO ("Make this configurable via a config file.")
+        private lateinit var wilmaServer: WilmaServer
         private val commandManager = CommandManager()
-        var running = false
+        private val configManager = ConfigManager()
+        var terminate = false
         var loggedIn = false
+        var debugOn = false
 
         @JvmStatic
         fun main(args: Array<String>) {
             commandManager.init()
+            configManager.init()
+            initChecks()
+
+            LOGGER.logDebug("Config and command managers initialized.")
             try {
                 LOGGER.log("Welcome to WilmaCLI v${VERSION}!")
                 LOGGER.log("Type 'help' for help.")
-                while (!running) {
+                while (!terminate) {
                     printPrompt()
                     val input = readln()
                     val splitInput = input.split(" ")
@@ -64,6 +71,15 @@ class WilmaCLI {
         }
 
         /**
+         * Returns the config manager.
+         *
+         * @return The config manager.
+         */
+        fun getConfigManager(): ConfigManager {
+            return configManager
+        }
+
+        /**
          * Returns the logger.
          *
          * @return The logger.
@@ -91,22 +107,38 @@ class WilmaCLI {
         }
 
         /**
-         * Returns whether the user is logged in or not.
+         * If the user is quitting the application.
          *
-         * @return Whether the user is logged in or not.
+         * @return is the user quitting the application.
          */
         fun isQuitting(): Boolean {
-            return running
+            return terminate
         }
 
         /**
          * Quits the application.
          */
         fun quit() {
-            if (running) {
+            if (isQuitting()) {
                 LOGGER.logWarning("Quitting...")
                 exitProcess(0)
             }
+        }
+
+        /**
+         * Performs checks.
+         */
+        private fun initChecks() {
+            val server = configManager.getConfig("server")
+            LOGGER.logDebug("Server: $server")
+            wilmaServer = if (server != null) {
+                WilmaServer(server as String)
+            } else {
+                LOGGER.logWarning("No server set. Using default server.")
+                WilmaServer("https://espoondemo.inschool.fi")
+            }
+            val debug = configManager.getConfig("debug").toString().toBoolean()
+            debugOn = debug
         }
     }
 }
