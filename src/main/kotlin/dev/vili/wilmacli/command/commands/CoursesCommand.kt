@@ -15,7 +15,7 @@ import org.openwilma.kotlin.classes.responses.WilmaAPIResponse
 import org.openwilma.kotlin.enums.CourseTimeRange
 import java.util.*
 
-class CoursesCommand : Command("Courses", arrayOf("courses", "c")) {
+class CoursesCommand : Command("Courses", arrayOf("course", "c")) {
 
     override fun exec(args: Array<String>): Boolean {
         if (needsLogin() && !WilmaCLI.isLoggedIn()) {
@@ -64,6 +64,6 @@ class CoursesCommand : Command("Courses", arrayOf("courses", "c")) {
     override fun getHelp(): String = """
         Prints your courses.
         
-        <courses|c> [current|past]
+        <courses|course> [current|past]
     """.trimIndent()
 }

@@ -12,7 +12,7 @@ import dev.vili.wilmacli.command.Command
 import dev.vili.wilmacli.WilmaCLI
 import java.util.*
 
-class ServerCommand : Command("Server", arrayOf("login", "l")) {
+class ServerCommand : Command("Server", arrayOf("s")) {
 
     override fun exec(args: Array<String>): Boolean {
         when (args.getOrNull(0)?.lowercase(Locale.getDefault())) {

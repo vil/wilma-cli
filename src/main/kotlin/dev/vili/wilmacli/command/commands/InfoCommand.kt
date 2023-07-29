@@ -15,7 +15,7 @@ class InfoCommand : Command("Info", arrayOf("i")) {
 
     override fun exec(args: Array<String>): Boolean {
         // Print info about the program and logged in state
-        WilmaCLI.getLogger().log("WilmaCLI v${WilmaCLI.getVersion()} - ${WilmaCLI.server.serverURL}")
+        WilmaCLI.getLogger().log("WilmaCLI v${WilmaCLI.getVersion()} By ${WilmaCLI.getAuthor()} - ${WilmaCLI.server.serverURL}")
         if (WilmaCLI.isLoggedIn()) {
             runBlocking {
                 WilmaCLI.getLogger().log("You are logged in as ${WilmaCLI.client.account().payload?.firstName} " +

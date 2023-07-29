@@ -18,6 +18,7 @@ class WilmaCLI {
     companion object {
         private val LOGGER = WLogger()
         private const val VERSION = "0.1.1a"
+        private const val AUTHOR = "Vili (https://vili.dev)"
         private val wilmaClient = OpenWilma()
         private lateinit var wilmaServer: WilmaServer
         private val commandManager = CommandManager()
@@ -34,10 +35,10 @@ class WilmaCLI {
 
             LOGGER.logDebug("Config and command managers initialized.")
             try {
-                LOGGER.log("Welcome to WilmaCLI v${VERSION}!")
+                LOGGER.log("Welcome to WilmaCLI v${VERSION}! By $AUTHOR")
                 LOGGER.log("Type 'help' for help.")
                 while (!terminate) {
-                    printPrompt()
+                    LOGGER.log("~ $ -> ")
                     val input = readln()
                     val splitInput = input.split(" ")
 
@@ -49,10 +50,6 @@ class WilmaCLI {
                 LOGGER.logError("An error occurred: ${e.message}")
                 return
             }
-        }
-
-        private fun printPrompt() {
-            LOGGER.log("~ $ ->")
         }
 
         val client: OpenWilma
@@ -95,6 +92,15 @@ class WilmaCLI {
          */
         fun getVersion(): String {
             return VERSION
+        }
+
+        /**
+         * Returns the author of WilmaCLI.
+         *
+         * @return The author of WilmaCLI.
+         */
+        fun getAuthor(): String {
+            return AUTHOR
         }
 
         /**

@@ -58,6 +58,6 @@ class ExamCommand : Command("Exam", arrayOf("exams", "e")) {
     override fun getHelp(): String = """
         Returns upcoming/past exams 
     
-        <exam> [upcoming/past]
+        <exam/exams> [upcoming/past]
     """.trimIndent()
 }

@@ -40,6 +40,6 @@ class DebugCommand : Command("Debug", arrayOf("debug")) {
     override fun getHelp(): String = """
         Debug command.
         
-        <debug|d> [on|off]
+        <debug> [on|off]
     """.trimIndent()
 }

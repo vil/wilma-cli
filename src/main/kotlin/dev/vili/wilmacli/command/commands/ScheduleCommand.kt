@@ -43,6 +43,6 @@ class ScheduleCommand : Command("Schedule", arrayOf("schedule")) {
     override fun getHelp(): String = """
         Prints your schedule.
         
-        <schedule|s>
+        <schedule>
     """.trimIndent()
 }
