@@ -21,14 +21,14 @@ class DebugCommand : Command("Debug", arrayOf("debug")) {
         return when (args[0].lowercase()) {
             "on" -> {
                 WilmaCLI.debugOn = true
-                WilmaCLI.getLogger().logDebug("Debug mode is now on.")
+                WilmaCLI.getLogger().debug("Debug mode is now on.")
                 WilmaCLI.getConfigManager().setConfig("debug", "true")
                 true
             }
 
             "off" -> {
                 WilmaCLI.debugOn = false
-                WilmaCLI.getLogger().logDebug("Debug mode is now off.")
+                WilmaCLI.getLogger().debug("Debug mode is now off.")
                 WilmaCLI.getConfigManager().setConfig("debug", "false")
                 true
             }

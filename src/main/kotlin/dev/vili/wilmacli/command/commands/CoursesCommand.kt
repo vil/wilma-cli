@@ -19,7 +19,7 @@ class CoursesCommand : Command("Courses", arrayOf("course", "c")) {
 
     override fun exec(args: Array<String>): Boolean {
         if (needsLogin() && !WilmaCLI.isLoggedIn()) {
-            WilmaCLI.getLogger().logError("You need to be logged in to use this command.")
+            WilmaCLI.getLogger().error("You need to be logged in to use this command.")
             return false
         }
 
@@ -28,7 +28,7 @@ class CoursesCommand : Command("Courses", arrayOf("course", "c")) {
                 "current" -> CourseTimeRange.CURRENT
                 "past" -> CourseTimeRange.PAST
                 else -> {
-                    WilmaCLI.getLogger().logError("Invalid arguments. Available options: 'current', 'past'.")
+                    WilmaCLI.getLogger().error("Invalid arguments. Available options: 'current', 'past'.")
                     return false
                 }
             }
@@ -39,11 +39,11 @@ class CoursesCommand : Command("Courses", arrayOf("course", "c")) {
                 }
                 true
             } catch (e: Exception) {
-                WilmaCLI.getLogger().logError("Failed to fetch the courses: ${e.message}")
+                WilmaCLI.getLogger().error("Failed to fetch the courses: ${e.message}")
                 false
             }
         } else {
-            WilmaCLI.getLogger().logError("Invalid arguments. The 'courses' command requires 'current' or 'past' as arguments.")
+            WilmaCLI.getLogger().error("Invalid arguments. The 'courses' command requires 'current' or 'past' as arguments.")
             return false
         }
     }

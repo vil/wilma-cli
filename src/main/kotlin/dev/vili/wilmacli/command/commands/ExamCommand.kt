@@ -30,7 +30,7 @@ class ExamCommand : Command("Exam", arrayOf("exams", "e")) {
 
     override fun exec(args: Array<String>): Boolean {
         if (needsLogin() && !WilmaCLI.isLoggedIn()) {
-            WilmaCLI.getLogger().logError("You need to be logged in to use this command.")
+            WilmaCLI.getLogger().error("You need to be logged in to use this command.")
             return false
         }
 
@@ -55,7 +55,7 @@ class ExamCommand : Command("Exam", arrayOf("exams", "e")) {
                 else -> false
             }
         } catch (e: Exception) {
-            WilmaCLI.getLogger().logError(e.message.toString())
+            WilmaCLI.getLogger().error(e.message.toString())
             false
         }
     }

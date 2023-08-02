@@ -31,7 +31,7 @@ class WLogger {
      *
      * @param message The message to log.
      */
-    fun logError(message: String) {
+    fun error(message: String) {
         println("$red[ERROR] $message$reset")
     }
 
@@ -40,7 +40,7 @@ class WLogger {
      *
      * @param message The message to log.
      */
-    fun logWarning(message: String) {
+    fun warning(message: String) {
         println("$yellow[WARNING] $message$reset")
     }
 
@@ -49,7 +49,7 @@ class WLogger {
      *
      * @param message The message to log.
      */
-    fun logInfo(message: String) {
+    fun info(message: String) {
         println("$blue[INFO] $message$reset")
     }
 
@@ -58,7 +58,7 @@ class WLogger {
      *
      * @param message The message to log.
      */
-    fun logDebug(message: String) {
+    fun debug(message: String) {
         if (WilmaCLI.debugOn) println("$purple[DEBUG] $message$reset")
     }
 }

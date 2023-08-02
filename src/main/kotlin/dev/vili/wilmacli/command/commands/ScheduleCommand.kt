@@ -15,12 +15,12 @@ class ScheduleCommand : Command("Schedule", arrayOf("schedule")) {
 
     override fun exec(args: Array<String>): Boolean {
         if (needsLogin() && !WilmaCLI.isLoggedIn()) {
-            WilmaCLI.getLogger().logError("You need to be logged in to use this command.")
+            WilmaCLI.getLogger().error("You need to be logged in to use this command.")
             return false
         }
 
         if (args.isNotEmpty()) {
-            WilmaCLI.getLogger().logError("Invalid arguments. The 'schedule' command doesn't take any arguments.")
+            WilmaCLI.getLogger().error("Invalid arguments. The 'schedule' command doesn't take any arguments.")
             return false
         }
 
@@ -42,7 +42,7 @@ class ScheduleCommand : Command("Schedule", arrayOf("schedule")) {
             }
             true
         } catch (e: Exception) {
-            WilmaCLI.getLogger().logError("Failed to fetch the schedule: ${e.message}")
+            WilmaCLI.getLogger().error("Failed to fetch the schedule: ${e.message}")
             false
         }
     }

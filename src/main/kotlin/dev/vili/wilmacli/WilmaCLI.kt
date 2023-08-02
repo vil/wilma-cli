@@ -33,7 +33,7 @@ class WilmaCLI {
             configManager.init()
             initChecks()
 
-            LOGGER.logDebug("Config and command managers initialized.")
+            LOGGER.debug("Config and command managers initialized.")
             try {
                 LOGGER.log("Welcome to WilmaCLI v${VERSION}! By $AUTHOR")
                 LOGGER.log("Type 'help' for help.")
@@ -43,11 +43,11 @@ class WilmaCLI {
                     val splitInput = input.split(" ")
 
                     if (splitInput[0].isNotEmpty() && commandManager.runCommand(splitInput[0], splitInput.drop(1).toTypedArray())) {
-                        LOGGER.logError("Invalid command. Type 'help' for help.")
+                        LOGGER.error("Invalid command. Type 'help' for help.")
                     }
                 }
             } catch (e: RuntimeException) {
-                LOGGER.logError("An error occurred: ${e.message}")
+                LOGGER.error("An error occurred: ${e.message}")
                 return
             }
         }
@@ -126,7 +126,7 @@ class WilmaCLI {
          */
         fun quit() {
             if (isQuitting()) {
-                LOGGER.logWarning("Quitting...")
+                LOGGER.warning("Quitting...")
                 exitProcess(0)
             }
         }
@@ -136,11 +136,11 @@ class WilmaCLI {
          */
         private fun initChecks() {
             val server = configManager.getConfig("server")
-            LOGGER.logDebug("Server: $server")
+            LOGGER.debug("Server: $server")
             wilmaServer = if (server != null) {
                 WilmaServer(server as String)
             } else {
-                LOGGER.logWarning("No server set. Using default server.")
+                LOGGER.warning("No server set. Using default server.")
                 WilmaServer("https://espoondemo.inschool.fi")
             }
             val debug = configManager.getConfig("debug").toString().toBoolean()

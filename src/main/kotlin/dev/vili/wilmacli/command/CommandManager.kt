@@ -30,7 +30,7 @@ class CommandManager {
             DebugCommand()
         )
 
-        WilmaCLI.getLogger().logDebug("Adding ${allCommands.size} commands to the command manager.")
+        WilmaCLI.getLogger().debug("Adding ${allCommands.size} commands to the command manager.")
         commands.addAll(allCommands)
     }
 

@@ -33,7 +33,7 @@ class TimetableCommand : Command("Timetable", arrayOf()) {
 
     override fun exec(args: Array<String>): Boolean {
         if (needsLogin() && !WilmaCLI.isLoggedIn()) {
-            WilmaCLI.getLogger().logError("You need to be logged in to use this command.")
+            WilmaCLI.getLogger().error("You need to be logged in to use this command.")
             return false
         }
 

@@ -36,12 +36,12 @@ class ServerCommand : Command("Server", arrayOf("s")) {
                 try {
                     runBlocking {
                         WilmaCLI.client.signInToWilma(WilmaCLI.server, username, password)
-                        WilmaCLI.getLogger().logDebug(WilmaCLI.client.roles().payload.toString())
+                        WilmaCLI.getLogger().debug(WilmaCLI.client.roles().payload.toString())
                         WilmaCLI.loggedIn = true
                     }
                     WilmaCLI.getLogger().log("Logged in successfully as $username.")
                 } catch (e: Exception) {
-                    WilmaCLI.getLogger().logError("Login failed: ${e.message}")
+                    WilmaCLI.getLogger().error("Login failed: ${e.message}")
                 }
                 return true
             }
