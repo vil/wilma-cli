@@ -51,6 +51,10 @@ class CoursesCommand : Command("Courses", arrayOf("course", "c")) {
     private fun displayCourses(payload: WilmaAPIResponse<List<WilmaCourse>>) {
         val courses = payload.payload ?: return
         // Example: Loop through the courses and print each course's information (name, teacher, etc.)
+        if (courses.isEmpty()) {
+            WilmaCLI.getLogger().log("No courses found.")
+            return
+        }
         for (course in courses) {
             WilmaCLI.getLogger().log("Course: ${course.name} (${course.id})")
             WilmaCLI.getLogger().log("Description: ${course.additionalInfo?.description}")

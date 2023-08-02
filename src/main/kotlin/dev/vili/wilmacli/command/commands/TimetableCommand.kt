@@ -48,10 +48,8 @@ class TimetableCommand : Command("Timetable", arrayOf()) {
                 true
             }
             "custom" -> {
-                if (args.size < 3) {
-                    // not enough args
-                    return false
-                }
+                if (args.size < 3) return false
+
                 val (startDate, endDate) = parseDates(args[1], args[2]) ?: return false
                 runBlocking {
                     val notes = WilmaCLI.client.lessonNotes(LessonNoteRange.CUSTOM, start = startDate, end = endDate)

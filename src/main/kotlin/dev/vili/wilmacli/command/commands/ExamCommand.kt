@@ -38,12 +38,18 @@ class ExamCommand : Command("Exam", arrayOf("exams", "e")) {
             when (args.getOrNull(0)?.toLowerCase()) {
                 "past" -> {
                     val exams = runBlocking { WilmaCLI.client.pastExams() }
-                    WilmaCLI.getLogger().log(gson.toJson(exams))
+                    if (exams.isEmpty()) {
+                        WilmaCLI.getLogger().log("No past exams.")
+                    }
+                    else WilmaCLI.getLogger().log(gson.toJson(exams))
                     true
                 }
                 "upcoming" -> {
                     val exams = runBlocking { WilmaCLI.client.upcomingExams() }
-                    WilmaCLI.getLogger().log(gson.toJson(exams))
+                    if (exams.isEmpty()) {
+                        WilmaCLI.getLogger().log("No upcoming exams.")
+                    }
+                    else WilmaCLI.getLogger().log(gson.toJson(exams))
                     true
                 }
                 else -> false

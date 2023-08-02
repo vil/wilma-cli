@@ -47,8 +47,7 @@ class ServerCommand : Command("Server", arrayOf("s")) {
             }
             "disconnect" -> {
                 WilmaCLI.getLogger().log("Logging out...")
-                // TODO("Not yet implemented")
-                return true
+                TODO("Not yet implemented")
             }
             "status" -> {
                 WilmaCLI.getLogger().log("You are currently ${if (WilmaCLI.isLoggedIn()) "logged in" else "not logged in"} to ${WilmaCLI.server.serverURL}.")
