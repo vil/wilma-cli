@@ -26,18 +26,15 @@ class ScheduleCommand : Command("Schedule", arrayOf("schedule")) {
 
         val client = WilmaCLI.client
         return try {
-            runBlocking {
-                val schedule = client.schedule()
-                val days = schedule.days
-                val terms = schedule.terms
+            val schedule = runBlocking { client.schedule() }
+            val days = schedule.days
+            val terms = schedule.terms
 
-                for (day in days) {
-                    for (term in terms) {
-                        WilmaCLI.getLogger().log("Day: $day (${day.day})")
-                        WilmaCLI.getLogger().log("Term: $term (${term.name})")
-                        WilmaCLI.getLogger().log("Start: ${term.start}")
-                        WilmaCLI.getLogger().log("End: ${term.end}")
-                    }
+            for (day in days) {
+                for (term in terms) {
+                    WilmaCLI.getLogger().log("Day: $day (${day.day})")
+                    WilmaCLI.getLogger().log("Term: $term (${term.name})")
+                    WilmaCLI.getLogger().log("Date: ${term.start} - ${term.end}")
                 }
             }
             true

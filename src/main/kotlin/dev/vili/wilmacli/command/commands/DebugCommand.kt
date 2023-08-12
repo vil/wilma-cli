@@ -14,7 +14,7 @@ class DebugCommand : Command("Debug", arrayOf("debug")) {
 
     override fun exec(args: Array<String>): Boolean {
         if (args.isEmpty()) {
-            println("Debug mode is ${if (WilmaCLI.debugOn) "on" else "off"}.")
+            WilmaCLI.getLogger().log("Debug mode is ${if (WilmaCLI.debugOn) "on" else "off"}.")
             return true
         }
 

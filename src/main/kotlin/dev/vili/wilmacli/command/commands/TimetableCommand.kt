@@ -52,7 +52,7 @@ class TimetableCommand : Command("Timetable", arrayOf()) {
 
                 val (startDate, endDate) = parseDates(args[1], args[2]) ?: return false
                 runBlocking {
-                    val notes = WilmaCLI.client.lessonNotes(LessonNoteRange.CUSTOM, start = startDate, end = endDate)
+                    val notes = WilmaCLI.client.lessonNotes(LessonNoteRange.CUSTOM, start=startDate, end=endDate)
                     notes.forEach { note ->
                         WilmaCLI.getLogger().log("Course: ${note.courseName} (${note.courseCode}) by ${note.authorName} (${note.authorCodeName})")
                     }

@@ -17,7 +17,7 @@ import kotlin.system.exitProcess
 class WilmaCLI {
     companion object {
         private val LOGGER = WLogger()
-        private const val VERSION = "0.1.1a"
+        private const val VERSION = "0.1.1b"
         private const val AUTHOR = "Vili (https://vili.dev)"
         private val wilmaClient = OpenWilma()
         private lateinit var wilmaServer: WilmaServer

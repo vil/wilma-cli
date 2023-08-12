@@ -57,7 +57,7 @@ class CoursesCommand : Command("Courses", arrayOf("course", "c")) {
         }
         for (course in courses) {
             WilmaCLI.getLogger().log("Course: ${course.name} (${course.id})")
-            WilmaCLI.getLogger().log("Description: ${course.additionalInfo?.description}")
+            WilmaCLI.getLogger().log("Description: ${course.additionalInfo?.description ?: "No description."}")
             WilmaCLI.getLogger().log("Teacher(s): ${course.teachers}")
             WilmaCLI.getLogger().log("Start and end date: ${course.startDate} - ${course.endDate} \n\n")
         }

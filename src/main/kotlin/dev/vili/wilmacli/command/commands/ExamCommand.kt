@@ -7,26 +7,11 @@
 
 package dev.vili.wilmacli.command.commands
 
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
 import kotlinx.coroutines.runBlocking
 import dev.vili.wilmacli.command.Command
 import dev.vili.wilmacli.WilmaCLI
-import org.openwilma.kotlin.utils.LocalDateGSONAdapter
-import org.openwilma.kotlin.utils.LocalDateTimeGSONAdapter
-import org.openwilma.kotlin.utils.LocalTimeGSONAdapter
-import java.time.LocalDate
-import java.time.LocalDateTime
-import java.time.LocalTime
 
 class ExamCommand : Command("Exam", arrayOf("exams", "e")) {
-    private val gson: Gson = GsonBuilder()
-        .setPrettyPrinting()
-        .serializeNulls()
-        .registerTypeAdapter(LocalDate::class.java, LocalDateGSONAdapter())
-        .registerTypeAdapter(LocalTime::class.java, LocalTimeGSONAdapter())
-        .registerTypeAdapter(LocalDateTime::class.java, LocalDateTimeGSONAdapter())
-        .create()
 
     override fun exec(args: Array<String>): Boolean {
         if (needsLogin() && !WilmaCLI.isLoggedIn()) {
@@ -35,21 +20,40 @@ class ExamCommand : Command("Exam", arrayOf("exams", "e")) {
         }
 
         return try {
-            when (args.getOrNull(0)?.toLowerCase()) {
+            when (args.getOrNull(0)?.lowercase()) {
                 "past" -> {
                     val exams = runBlocking { WilmaCLI.client.pastExams() }
+
                     if (exams.isEmpty()) {
                         WilmaCLI.getLogger().log("No past exams.")
                     }
-                    else WilmaCLI.getLogger().log(gson.toJson(exams))
+                    else {
+                        for (i in exams) {
+                            WilmaCLI.getLogger().log("Subject: ${i.subject}")
+                            WilmaCLI.getLogger().log("Course: ${i.courseName} (${i.courseCode})")
+                            WilmaCLI.getLogger().log("Grade: ${i.grade}")
+                            WilmaCLI.getLogger().log("Date: ${i.timestamp.toString()}")
+                            WilmaCLI.getLogger().log("Description: ${i.additionalInfo}")
+                            WilmaCLI.getLogger().log("Teachers: ${i.teachers} \n\n")
+                        }
+                    }
                     true
                 }
                 "upcoming" -> {
                     val exams = runBlocking { WilmaCLI.client.upcomingExams() }
+
                     if (exams.isEmpty()) {
                         WilmaCLI.getLogger().log("No upcoming exams.")
                     }
-                    else WilmaCLI.getLogger().log(gson.toJson(exams))
+                    else {
+                        for (i in exams) {
+                            WilmaCLI.getLogger().log("Subject: ${i.subject}")
+                            WilmaCLI.getLogger().log("Course: ${i.courseName} (${i.courseCode})")
+                            WilmaCLI.getLogger().log("Date: ${i.timestamp.toString()}")
+                            WilmaCLI.getLogger().log("Description: ${i.additionalInfo}")
+                            WilmaCLI.getLogger().log("Teachers: ${i.teachers} \n\n")
+                        }
+                    }
                     true
                 }
                 else -> false
