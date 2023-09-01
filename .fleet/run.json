@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "gradle",
+            "name": "Exec",
+            "tasks": ["run"],
+        },
+        {
+            "type": "gradle",
+            "name": "Build",
+            "tasks": ["build"],
+        }
+    ]
+}

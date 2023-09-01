@@ -141,6 +141,10 @@ class WilmaCLI {
                 WilmaServer(server as String)
             } else {
                 LOGGER.warning("No server set. Using default server.")
+                /**
+                * Default server url for testing.
+                * Login using oppilas:oppilas
+                */
                 WilmaServer("https://espoondemo.inschool.fi")
             }
             val debug = configManager.getConfig("debug").toString().toBoolean()
