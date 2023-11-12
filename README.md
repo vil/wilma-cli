@@ -2,17 +2,17 @@
 Kotlin cli app for [Wilma](https://wilma.fi/).
 
 ## Commands
-| Command                                | Description                        |
-|----------------------------------------|------------------------------------|
-| help                                   | Shows help                         |
-| server [set/connect/disconnect/status] | Connect/configure the Wilma server |
-| debug                                  | Enables debug mode                 |
-| announcements                          | Shows announcements                |
-| courses [current/past]                 | Shows courses                      |
-| exams [past/upcoming]                  | Shows exams                        |
-| info                                   | Shows about your session           |
-| timetable [default/year/custom]        | Shows timetable                    |
-| quit                                   | Quits                              |
+| Command                                | Description                             |
+|----------------------------------------|-----------------------------------------|
+| help                                   | Shows help                              |
+| server [set/connect/disconnect/status] | Connect/configure the Wilma server      |
+| debug                                  | Enables debug mode                      |
+| announcements                          | Shows announcements                     |
+| courses [current/past]                 | Shows courses                           |
+| exams [upcoming/past]                  | Shows exams                             |
+| info                                   | Shows info about your session           |
+| timetable [default/year/custom]        | Shows timetable                         |
+| quit                                   | Quits                                   |
 
 ## Setup
 ### Install
