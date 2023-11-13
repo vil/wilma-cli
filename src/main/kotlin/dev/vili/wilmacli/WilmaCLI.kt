@@ -12,6 +12,7 @@ import dev.vili.wilmacli.util.ConfigManager
 import dev.vili.wilmacli.util.WLogger
 import org.openwilma.kotlin.OpenWilma
 import org.openwilma.kotlin.classes.WilmaServer
+import java.io.EOFException
 import kotlin.system.exitProcess
 
 class WilmaCLI {
@@ -46,9 +47,12 @@ class WilmaCLI {
                         LOGGER.error("Invalid command. Type 'help' for help.")
                     }
                 }
+            } catch (e: java.io.EOFException) {
+                LOGGER.error("EOF reached.")
             } catch (e: RuntimeException) {
                 LOGGER.error("An error occurred: ${e.message}")
-                return
+            } finally {
+                terminate = !terminate
             }
         }
 
