@@ -16,7 +16,7 @@ Kotlin cli app for [Wilma](https://wilma.fi/).
 
 ## Setup
 ### Install
-1. Clone the repository `git clone https://github.com/V1li/wilma-cli.git`
+1. Clone the repository `git clone https://github.com/vil/wilma-cli.git`
 2. Build the app `./gradlew build` or `gradlew.bat build`.
 3. Copy the jar file from `build/libs` to your desired location.
 4. Run the app `java -jar wilma-cli-<version>.jar`.
