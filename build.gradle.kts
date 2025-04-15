@@ -25,7 +25,7 @@ dependencies {
 
     implementation("org.openwilma:kotlin:0.9.21-BETA")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2")
-    implementation("com.google.code.gson:gson:2.12.1")
+    implementation("com.google.code.gson:gson:2.13.0")
 
 }
 
